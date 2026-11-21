@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://identitytoolkit.googleapis.com; base-uri 'none'; form-action 'none'">
+<title>Ne Pişir? — E-posta Giriş Doğrulaması</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:light}
+body{margin:0;background:#f3f8f4;color:#203d2a;padding:25px 16px}
+main{background:white;max-width:440px;margin:5vh auto;padding:30px;border:1px solid #dce9df;border-radius:20px;box-shadow:0 12px 34px #16482915}
+h1{font-size:27px;margin:4px 0}h2{font-size:17px;margin:9px 0 18px}
+p,small{color:#597363;line-height:1.6}p{font-size:14px}
+label{display:block;margin:15px 0 6px;font-weight:650;font-size:14px}
+input{display:block;width:100%;box-sizing:border-box;padding:13px 14px;border-radius:10px;border:1px solid #bed4c3;font:inherit;color:#183b25;background:white}
+input:focus{outline:2px solid #6db783}
+button{background:#247b45;border:0;border-radius:12px;color:white;font-weight:700;font-size:15px;width:100%;margin-top:22px;padding:15px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+#status{display:none;margin-top:16px;border-radius:11px;padding:15px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.6}
+#status.pending{display:block;background:#eaf2ff;color:#16497e}
+#status.error{display:block;background:#fff1ed;color:#9b3325}
+#status.ok{display:block;background:#e4f4e8;color:#115b2b}
+.notice{background:#f5f7f6;padding:13px;border-radius:9px;font-size:12px;line-height:1.6;color:#556e60;margin-top:20px}
+</style>
+</head>
+<body>
+<main>
+<h1>🍳 Ne Pişir?</h1>
+<h2>Firebase e-posta giriş testi</h2>
+<p>Bu sayfa uygulamamızın kullandığı Firebase projesine doğrudan HTTPS isteği gönderir. Sadece e-posta/şifre girişi ve hesap profilinin doğrulanmasını test eder.</p>
+<label for="email">Kayıtlı e-posta</label>
+<input id="email" name="email" type="email" inputmode="email" autocomplete="off" spellcheck="false" placeholder="ornek@eposta.com">
+<label for="password">Güncel şifre</label>
+<input id="password" name="password" type="password" autocomplete="off" placeholder="Şifren">
+<button id="login" type="button">Firebase girişini doğrula</button>
+<div id="status" role="status" aria-live="polite"></div>
+<div class="notice">
+<strong>Gizlilik:</strong> Parola ve oturum jetonu saklanmaz; tarayıcı depolaması, çerez veya analiz servisi kullanılmaz. İstek yalnızca <code>identitytoolkit.googleapis.com</code> adresine gönderilir. Şifreni bu sohbetle paylaşma.<br><br>
+<strong>Şirket bilgisayarı:</strong> Kurum bilgisayarında kişisel hesap şifreni kullanmak istemiyorsan testi yapma; kişisel cihazla devam edebiliriz. Bu ekran gerçek mobil uygulama ve Google/Apple girişi testi değildir.
+</div>
+</main>
+<script>
+(function(){
+'use strict';
+const API_KEY='AIzaSyCiuFGV1wb91YIhuVzOmNI3kk69ibglh_8'; // Firebase public client API key; not a secret.
+const button=document.getElementById('login');
+const status=document.getElementById('status');
+const emailField=document.getElementById('email');
+const passwordField=document.getElementById('password');
+function show(kind,message){status.className=kind;status.textContent=message;}
+async function firebase(method,payload){
+  const ctrl=new AbortController();
+  const timeout=setTimeout(()=>ctrl.abort(),12000);
+  try{
+    const response=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:'+method+'?key='+encodeURIComponent(API_KEY),{
+      method:'POST',headers:{'Content-Type':'application/json','X-Firebase-Locale':'tr'},
+      body:JSON.stringify(payload),cache:'no-store',referrerPolicy:'no-referrer',signal:ctrl.signal
+    });
+    const raw=await response.text();
+    let json={};try{json=raw?JSON.parse(raw):{}}catch(_){}
+    if(!response.ok){
+      const code=String(json?.error?.message||'SERVER_ERROR').split(' : ')[0];
+      const messages={
+        INVALID_LOGIN_CREDENTIALS:'E-posta veya şifre yanlış.',
+        INVALID_PASSWORD:'E-posta veya şifre yanlış.',
+        EMAIL_NOT_FOUND:'E-posta veya şifre yanlış.',
+        INVALID_EMAIL:'E-posta adresi geçersiz.',
+        USER_DISABLED:'Hesap devre dışı.',
+        TOO_MANY_ATTEMPTS_TRY_LATER:'Çok fazla deneme yapıldı. Daha sonra tekrar dene.',
+        OPERATION_NOT_ALLOWED:'E-posta/şifre girişi Firebase üzerinde kapalı.',
+        API_KEY_INVALID:'Firebase API anahtarı geçersiz.',
+      };
+      throw new Error(messages[code]||'Firebase hata kodu: '+code);
+    }
+    return json;
+  }finally{clearTimeout(timeout);}
+}
+button.addEventListener('click',async()=>{
+  if(button.disabled)return;
+  const email=emailField.value.trim().toLowerCase();
+  let password=passwordField.value;
+  passwordField.value='';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||!password){
+    password='';
+    show('error','Önce geçerli e-posta ve güncel şifreni gir. Bilgilerin gönderilmedi.');
+    return;
+  }
+  button.disabled=true;
+  show('pending','🔵 Giriş isteği gönderiliyor. En fazla 12 saniye…');
+  try{
+    const result=await firebase('signInWithPassword',{email,password,returnSecureToken:true});
+    password='';
+    if(!result.idToken||!result.localId)throw new Error('Oturum bilgisi eksik.');
+    const userResult=await firebase('lookup',{idToken:result.idToken});
+    const user=userResult.users?.[0];
+    if(!user||user.localId!==result.localId)throw new Error('Kullanıcı profili doğrulanamadı.');
+    show('ok','✅ GİRİŞ BAŞARILI\nFirebase yeni şifreni kabul etti ve kullanıcı profilini doğruladı.\nE-posta doğrulaması: '+(user.emailVerified?'Tamamlandı':'Henüz yapılmadı')+'\n\nŞifreni veya kimlik bilgilerini kimseye gönderme.');
+  }catch(e){
+    password='';
+    const msg=e?.name==='AbortError'?'Firebase 12 saniye içinde yanıt vermedi.':e instanceof TypeError?'Tarayıcı/ağ isteği engelledi (CORS veya güvenlik politikası olabilir).':String(e?.message||'Bilinmeyen hata');
+    show('error','❌ GİRİŞ DOĞRULANAMADI\n'+msg+'\n\nYalnızca hata metnini paylaş, şifreni değil.');
+  }finally{
+    password='';
+    button.disabled=false;
+  }
+});
+})();
+</script>
+</body>
+</html>
