@@ -35,7 +35,15 @@ button.addEventListener("click",async function(){
      "auth/network-request-failed":"Tarayıcı/ağ isteği engellendi veya internet bağlantısı kesildi.",
      "auth/internal-error":"Firebase/Google giriş işlemi sırasında beklenmeyen hata."
    };
-   show("error","❌ GOOGLE GİRİŞİ TAMAMLANAMADI\n"+(errors[code]||code)+"\n\nŞifreni veya Google kimlik jetonunu paylaşma.");
+   // Report the exact Firebase error code and redact private content from the
+   // underlying diagnostic. OAuth errors can include credential-bearing URLs.
+   const diagnostic=String(e?.message||"")
+     .replace(/https?:\/\/[^\s"'<>]+/gi,"[bağlantı gizlendi]")
+     .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,"[e-posta gizlendi]")
+     .replace(/\beyJ[A-Za-z0-9_.-]{20,}\b/g,"[jeton gizlendi]")
+     .replace(/\b(?:access_token|id_token|refresh_token|credential|apiKey|code)[\s:=]+[^\s,;)]{4,}/gi,"[gizli alan]")
+     .slice(0,220);
+   show("error","❌ GOOGLE GİRİŞİ TAMAMLANAMADI\nFirebase hata kodu: "+code+"\n"+(errors[code]||"Bilinmeyen Firebase hatası.")+(diagnostic?"\nGizlenmiş teknik açıklama: "+diagnostic:"")+"\n\nYalnızca hata kodunu paylaş. Şifre, Google bağlantısı veya kimlik jetonu gönderme.");
  }finally{
    try{if(auth.currentUser)await signOut(auth);}catch(_){}
    button.disabled=false;
