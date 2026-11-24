@@ -57,6 +57,15 @@ h1{font-size:38px;line-height:1.1;margin:4px 0;color:#fff;font-weight:900;letter
 .details{background:#fff7ee;border-radius:12px;padding:13px;margin:12px 0}
 .details ol{padding-left:23px;font-size:14px;line-height:1.6}
 .details li{margin:5px 0}
+.measure-list{list-style:none;margin:10px 0 0;padding:0}
+.measure-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #e9d6c5;padding:9px 0;font-size:13px}
+.measure-list li span{flex:1}
+.measure-toggle{background:#ffead6;border:1px solid #e4baa0;border-radius:8px;padding:7px 8px;font-size:11px;color:#693a1e;font-weight:700;white-space:nowrap;cursor:pointer}
+.step-list{padding-left:23px;line-height:1.7;font-size:14px}
+.step-list li{padding:4px 0 7px 4px}
+.step-list li::marker{font-weight:800;color:#a95011}
+.tip{background:#fff1d9;border-left:4px solid #d1792a;border-radius:10px;padding:13px 14px;margin:12px 0;font-size:13px;line-height:1.6}
+.tip p{margin:5px 0 0;color:#6f462e}
 .missing{font-size:13px;line-height:1.5;color:#794a2d}
 .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .product{background:white;border-radius:12px;padding:12px;margin:8px 0}
@@ -113,11 +122,335 @@ const catalog=[
 ['ŞOK','Mis Dilimli Tost Peyniri 1200 g','https://www.sokmarket.com.tr/mis-dilimli-tost-peyniri-1200-g-p-447']
 ];
 const recipes=[
-{id:1,name:'İmam Bayıldı',cat:'Sebze Yemeği',mins:65,icon:'🍆',serves:4,ing:['patlıcan','soğan','domates','sarımsak','zeytinyağı','tuz'],steps:['Patlıcanları alacalı soy ve tuzlu suda beklet.','Soğan ve sarımsağı zeytinyağıyla kavur.','Domatesli harcı patlıcanlara doldurup fırında pişir.']},
-{id:2,name:'Hünkar Beğendi',cat:'Ana Yemek',mins:70,icon:'🍲',serves:4,ing:['dana eti','patlıcan','soğan','domates','tereyağı','un','süt','kaşar peyniri','tuz'],steps:['Eti soğan ve domatesle yumuşayana kadar pişir.','Beğendi için tereyağı, un ve sütle sos hazırla.','Köz patlıcan ve kaşarı ekleyip etle servis et.']},
-{id:3,name:'İzmir Köfte',cat:'Ana Yemek',mins:60,icon:'🍖',serves:4,ing:['kıyma','patates','soğan','yumurta','galeta unu','domates','salça','tuz'],steps:['Köfte malzemelerini yoğur ve şekillendir.','Patateslerle birlikte fırın kabına yerleştir.','Salçalı sosu ekleyip iyice pişir.']},
-{id:4,name:'Yayla Çorbası',cat:'Çorba',mins:40,icon:'🥣',serves:4,ing:['yoğurt','pirinç','yumurta','un','tereyağı','nane','tuz'],steps:['Pirinci suda haşla.','Yoğurt, yumurta ve unu ılıştırarak çorbaya ekle.','Naneli tereyağıyla servis et.']},
-{id:5,name:'Kısır',cat:'Salata',mins:30,icon:'🥗',serves:6,ing:['ince bulgur','domates','salatalık','maydanoz','limon','salça','zeytinyağı'],steps:['Bulguru sıcak suyla ıslatıp şişir.','Salça ve baharatlarla karıştır.','Doğranmış yeşillikler ve limon ekle.']}
+ {
+  "id": 1,
+  "name": "İmam Bayıldı",
+  "cat": "Sebze Yemeği",
+  "mins": 65,
+  "icon": "🍆",
+  "serves": 4,
+  "amounts": [
+   [
+    "patlıcan",
+    "4 adet patlıcan"
+   ],
+   [
+    "soğan",
+    "2 adet soğan"
+   ],
+   [
+    "domates",
+    "3 adet domates"
+   ],
+   [
+    "sarımsak",
+    "4 diş sarımsak"
+   ],
+   [
+    "zeytinyağı",
+    "5 yemek kaşığı zeytinyağı"
+   ],
+   [
+    "tuz",
+    "1 çay kaşığı tuz"
+   ]
+  ],
+  "steps": [
+   "Patlıcanları alacalı soyup tuzlu suda 15 dakika beklet.",
+   "Kurulayıp hafif yağla ve 200°C fırında 25 dakika yumuşat.",
+   "Soğanları piyazlık, sarımsakları ince doğra.",
+   "Zeytinyağında soğan ve sarımsağı 6 dakika kavur.",
+   "Doğranmış domates ve tuzu ekleyip 10 dakika pişir.",
+   "Patlıcanların ortasını açıp hazırladığın harçla doldur.",
+   "Fırın kabına yarım su bardağı sıcak su ekle.",
+   "190°C fırında yaklaşık 20 dakika daha pişir.",
+   "Ilık veya soğuk servis et."
+  ],
+  "tip": "Patlıcanları kızartmak yerine fırınlamak daha hafif sonuç verir.",
+  "ing": [
+   "patlıcan",
+   "soğan",
+   "domates",
+   "sarımsak",
+   "zeytinyağı",
+   "tuz"
+  ]
+ },
+ {
+  "id": 2,
+  "name": "Hünkar Beğendi",
+  "cat": "Ana Yemek",
+  "mins": 70,
+  "icon": "🍲",
+  "serves": 4,
+  "amounts": [
+   [
+    "dana eti",
+    "500 gram kuşbaşı dana eti"
+   ],
+   [
+    "patlıcan",
+    "4 adet közlemelik patlıcan"
+   ],
+   [
+    "soğan",
+    "1 adet soğan"
+   ],
+   [
+    "domates",
+    "2 adet domates"
+   ],
+   [
+    "tereyağı",
+    "3 yemek kaşığı tereyağı"
+   ],
+   [
+    "un",
+    "2 yemek kaşığı un"
+   ],
+   [
+    "süt",
+    "1,5 su bardağı süt"
+   ],
+   [
+    "kaşar peyniri",
+    "50 gram kaşar peyniri"
+   ],
+   [
+    "tuz",
+    "1 çay kaşığı tuz"
+   ]
+  ],
+  "steps": [
+   "Patlıcanları közleyip kabuklarını soy ve ince kıy.",
+   "Eti tencerede suyunu salıp çekene kadar pişir.",
+   "Doğranmış soğanı ekleyip kavur.",
+   "Domates ve biraz sıcak su ekleyip et yumuşayana kadar pişir.",
+   "Ayrı tencerede tereyağını erit ve unu kokusu çıkana kadar kavur.",
+   "Sütü azar azar ekleyip sürekli karıştır.",
+   "Közlenmiş patlıcan ve rendelenmiş kaşarı ekle.",
+   "Beğendiyi tuzla tatlandırıp tabaklara paylaştır.",
+   "Üzerine sıcak etli harcı koyarak servis et."
+  ],
+  "tip": "Etin yumuşama süresi kullanılan parçaya göre değişebilir.",
+  "ing": [
+   "dana eti",
+   "patlıcan",
+   "soğan",
+   "domates",
+   "tereyağı",
+   "un",
+   "süt",
+   "kaşar peyniri",
+   "tuz"
+  ]
+ },
+ {
+  "id": 3,
+  "name": "İzmir Köfte",
+  "cat": "Ana Yemek",
+  "mins": 60,
+  "icon": "🍖",
+  "serves": 4,
+  "amounts": [
+   [
+    "kıyma",
+    "400 gram kıyma"
+   ],
+   [
+    "patates",
+    "3 adet patates"
+   ],
+   [
+    "soğan",
+    "1 adet soğan"
+   ],
+   [
+    "yumurta",
+    "1 adet yumurta"
+   ],
+   [
+    "galeta unu",
+    "3 yemek kaşığı galeta unu"
+   ],
+   [
+    "domates",
+    "2 adet domates"
+   ],
+   [
+    "salça",
+    "1 yemek kaşığı salça"
+   ],
+   [
+    "sıvı yağ",
+    "3 yemek kaşığı sıvı yağ"
+   ],
+   [
+    "tuz",
+    "1 çay kaşığı tuz"
+   ],
+   [
+    "karabiber",
+    "Yarım çay kaşığı karabiber"
+   ]
+  ],
+  "steps": [
+   "Kıyma, rendelenmiş soğan, yumurta, galeta unu ve baharatları yoğur.",
+   "Harçtan uzun köfteler şekillendir.",
+   "Patatesleri soyup elma dilimi kes.",
+   "Köfte ve patatesleri hafif yağlayıp fırın kabına diz.",
+   "200°C fırında 15 dakika ön pişirme yap.",
+   "Salçayı 1,5 su bardağı sıcak suyla aç.",
+   "Domatesleri dilimleyip tepsiye yerleştir.",
+   "Salçalı sosu üzerine gezdir.",
+   "Köfteler tamamen pişene kadar yaklaşık 25 dakika daha fırınla."
+  ],
+  "tip": "Köftenin iç sıcaklığının en az 71°C olduğundan emin ol.",
+  "ing": [
+   "kıyma",
+   "patates",
+   "soğan",
+   "yumurta",
+   "galeta unu",
+   "domates",
+   "salça",
+   "sıvı yağ",
+   "tuz",
+   "karabiber"
+  ]
+ },
+ {
+  "id": 4,
+  "name": "Yayla Çorbası",
+  "cat": "Çorba",
+  "mins": 40,
+  "icon": "🥣",
+  "serves": 4,
+  "amounts": [
+   [
+    "yoğurt",
+    "1,5 su bardağı yoğurt"
+   ],
+   [
+    "pirinç",
+    "Yarım su bardağı pirinç"
+   ],
+   [
+    "yumurta",
+    "1 yumurta sarısı"
+   ],
+   [
+    "un",
+    "1 yemek kaşığı un"
+   ],
+   [
+    "tereyağı",
+    "1 yemek kaşığı tereyağı"
+   ],
+   [
+    "nane",
+    "1 tatlı kaşığı kuru nane"
+   ],
+   [
+    "tuz",
+    "1 çay kaşığı tuz"
+   ]
+  ],
+  "steps": [
+   "Pirinci yıkayıp 5 su bardağı suda yumuşayana kadar haşla.",
+   "Ayrı kapta yoğurt, yumurta sarısı ve unu çırp.",
+   "Kaynar çorba suyundan birkaç kepçe alıp yoğurtlu karışıma azar azar ekle.",
+   "Ilıştırılmış terbiyeyi tencereye yavaşça dök.",
+   "Kesilmemesi için sürekli karıştırarak ısıt.",
+   "Kısık ateşte 5 dakika pişir.",
+   "Tereyağında naneyi kısa süre ısıt.",
+   "Naneli yağı çorbaya ekleyip servis et."
+  ],
+  "tip": "Yoğurtlu terbiyeyi doğrudan kaynar suya dökme.",
+  "ing": [
+   "yoğurt",
+   "pirinç",
+   "yumurta",
+   "un",
+   "tereyağı",
+   "nane",
+   "tuz"
+  ]
+ },
+ {
+  "id": 5,
+  "name": "Kısır",
+  "cat": "Salata",
+  "mins": 30,
+  "icon": "🥗",
+  "serves": 6,
+  "amounts": [
+   [
+    "ince bulgur",
+    "2 su bardağı ince bulgur"
+   ],
+   [
+    "salça",
+    "2 yemek kaşığı salça"
+   ],
+   [
+    "domates",
+    "2 adet domates"
+   ],
+   [
+    "salatalık",
+    "1 adet salatalık"
+   ],
+   [
+    "taze soğan",
+    "4 dal taze soğan"
+   ],
+   [
+    "maydanoz",
+    "Yarım demet maydanoz"
+   ],
+   [
+    "limon",
+    "1 adet limon"
+   ],
+   [
+    "zeytinyağı",
+    "4 yemek kaşığı zeytinyağı"
+   ],
+   [
+    "nar ekşisi",
+    "2 yemek kaşığı nar ekşisi"
+   ],
+   [
+    "tuz",
+    "1 çay kaşığı tuz"
+   ]
+  ],
+  "steps": [
+   "Bulguru geniş kaseye al.",
+   "Üzerine 2 su bardağı sıcak su döküp kapağını kapat.",
+   "15 dakika şişmesini bekle.",
+   "Salça ve zeytinyağını ekleyip karıştır.",
+   "Domates, salatalık ve taze soğanı küçük doğra.",
+   "Maydanozu ince kıy.",
+   "Sebzeleri bulgura ekle.",
+   "Limon suyu, nar ekşisi ve tuzla tatlandır.",
+   "İyice karıştırıp marul yapraklarıyla servis et."
+  ],
+  "tip": "Sebzeleri bulgur soğuduktan sonra ekle.",
+  "ing": [
+   "ince bulgur",
+   "salça",
+   "domates",
+   "salatalık",
+   "taze soğan",
+   "maydanoz",
+   "limon",
+   "zeytinyağı",
+   "nar ekşisi",
+   "tuz"
+  ]
+ }
 ];
 const ingredients=['domates','yumurta','süt','peynir','patates','soğan','patlıcan','sarımsak','yoğurt','pirinç','tereyağı','limon','un','tuz','kıyma','maydanoz','salatalık','ince bulgur','nane','kaşar peyniri','zeytinyağı','salça','dana eti','galeta unu'];
 const emojis={domates:'🍅',yumurta:'🥚',süt:'🥛',peynir:'🧀',patates:'🥔',soğan:'🧅',patlıcan:'🍆',sarımsak:'🧄',yoğurt:'🥣',pirinç:'🍚',tereyağı:'🧈',limon:'🍋',salatalık:'🥒'};
@@ -137,16 +470,16 @@ return '<div class="hero"><div class="smallcap">TAZE FİKİRLER, NEFİS TARİFLE
 }
 function recipeCard(r){
 const missing=r.ing.filter(function(i){return !state.selected.includes(i)});
-return '<article class="recipe"><div class="row"><div class="icon">'+r.icon+'</div><div class="info"><h3>'+esc(r.name)+'</h3><div class="meta">'+esc(r.cat)+' · ⏱ '+r.mins+' dk · '+r.serves+' kişilik</div></div><button class="small-link" aria-label="Favorilere ekle" data-action="fav" data-value="'+r.id+'">'+(state.favorites.includes(r.id)?'♥':'♡')+'</button></div><p class="missing">Evinde olmayan: '+missing.length+' malzeme</p>'+btn('Tarifi Gör →','detail:'+r.id,'small')+'</article>';
+return '<article class="recipe"><div class="row"><div class="icon">'+r.icon+'</div><div class="info"><h3>'+esc(r.name)+'</h3><div class="meta">'+esc(r.cat)+' · ⏱ '+r.mins+' dk · '+r.serves+' kişilik · '+r.steps.length+' adım</div></div><button class="small-link" aria-label="Favorilere ekle" data-action="fav" data-value="'+r.id+'">'+(state.favorites.includes(r.id)?'♥':'♡')+'</button></div><p class="missing">Evinde olmayan: '+missing.length+' malzeme</p>'+btn('Tarifi Gör →','detail:'+r.id,'small')+'</article>';
 }
 function details(r){
 const missing=r.ing.filter(function(i){return !state.selected.includes(i)});
-return '<div class="panel"><button class="small-link" data-action="back">← Tariflere dön</button><h2>'+r.icon+' '+esc(r.name)+'</h2><p class="desc">'+esc(r.cat)+' · '+r.mins+' dk · '+r.serves+' kişilik</p><div class="details"><strong>Malzemeler</strong>'+chips(r.ing,'ingredientToggle',state.selected)+'</div><div class="details"><strong>Yapılışı (demo özeti)</strong><ol>'+r.steps.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol></div><p class="hint">'+missing.length+' eksik malzemen var.</p>'+btn('🛒 Eksikleri Alışveriş Listesine Ekle','missing:'+r.id)+ '<div class="space"></div>'+btn(state.favorites.includes(r.id)?'♥ Favorilerimden çıkar':'♡ Favorilerime ekle','fav:'+r.id,'light')+'</div>';
+return '<div class="panel"><button class="small-link" data-action="back">← Tariflere dön</button><h2>'+r.icon+' '+esc(r.name)+'</h2><p class="desc">'+esc(r.cat)+' · ⏱ '+r.mins+' dk · '+r.serves+' kişilik · '+r.steps.length+' adım</p><div class="details"><h3>🥬 Malzemeler ve ölçüleri</h3><ul class="measure-list">'+r.amounts.map(function(p){return '<li><span>'+esc(p[1])+'</span><button class="measure-toggle" data-action="ingredientToggle" data-value="'+esc(p[0])+'" aria-label="'+esc(p[0])+' evimde var/yok olarak işaretle">'+(state.selected.includes(p[0])?'✓ Evimde var':'＋ Evime ekle')+'</button></li>'}).join('')+'</ul></div><div class="details"><h3>👩‍🍳 Adım adım yapılışı</h3><ol class="step-list">'+r.steps.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol></div><div class="tip"><strong>💡 Püf noktası</strong><p>'+esc(r.tip)+'</p></div><p class="hint">'+missing.length+' eksik malzemen var.</p>'+btn('🛒 Eksikleri Alışveriş Listesine Ekle','missing:'+r.id)+ '<div class="space"></div>'+btn(state.favorites.includes(r.id)?'♥ Favorilerimden çıkar':'♡ Favorilerime ekle','fav:'+r.id,'light')+'</div>';
 }
 function recipePage(){
 if(state.detail){const r=recipes.find(function(x){return x.id===state.detail});if(r)return details(r)}
 const arr=(state.results||recipes).filter(function(r){return !state.mins||r.mins<=state.mins});
-return '<h2 class="section-title">🍽 Tarifler</h2><div class="panel"><h3>Tariflerini Filtrele</h3><p class="label">⏱ Hazırlama süresi</p><div class="chips">'+[['Tümü',0],['30 dk',30],['45 dk',45],['60 dk',60],['90 dk',90]].map(function(x){return '<button class="chip'+(x[1]===state.mins?' selected':'')+'" data-action="minutes" data-value="'+x[1]+'">'+x[0]+'</button>'}).join('')+'</div>'+btn('Malzemelerimi Değiştir','home','light')+'</div><div class="row"><h2 class="section-title">Tarif Sonuçları</h2><span class="badge">'+arr.length+' demo tarif</span></div>'+(arr.length?arr.map(recipeCard).join(''):'<div class="empty">Bu filtreye uygun örnek tarif bulunamadı.</div>')+'<p class="note" style="color:white">Bu deneme sürümünde beş örnek tarif vardır. Tam tarif arşivi iOS uygulamasıyla aynı değildir.</p>';
+return '<h2 class="section-title">🍽 Tarifler</h2><div class="panel"><h3>Tariflerini Filtrele</h3><p class="label">⏱ Hazırlama süresi</p><div class="chips">'+[['Tümü',0],['30 dk',30],['45 dk',45],['60 dk',60],['90 dk',90]].map(function(x){return '<button class="chip'+(x[1]===state.mins?' selected':'')+'" data-action="minutes" data-value="'+x[1]+'">'+x[0]+'</button>'}).join('')+'</div>'+btn('Malzemelerimi Değiştir','home','light')+'</div><div class="row"><h2 class="section-title">Tarif Sonuçları</h2><span class="badge">'+arr.length+' demo tarif</span></div>'+(arr.length?arr.map(recipeCard).join(''):'<div class="empty">Bu filtreye uygun örnek tarif bulunamadı.</div>')+'<p class="note" style="color:white">Bu demoda 5 tarifin kaynak projedeki tüm yapılış adımları, malzeme ölçüleri ve püf noktaları gösterilir. Tam tarif arşivi iOS uygulamasıyla aynı değildir.</p>';
 }
 function favorites(){
 const f=recipes.filter(function(r){return state.favorites.includes(r.id)});
