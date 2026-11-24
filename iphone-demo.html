@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#B95B18"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ne Pişir? Demo">
+<title>Ne Pişir? | iPhone Arayüz Demosu</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:#402718;background:#ecdfd1;-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0}
+#phone{max-width:490px;margin:0 auto;min-height:100dvh;position:relative;background:#E87822;box-shadow:0 12px 55px #44200b30}
+.demo-ribbon{background:#402718;color:#fff0e2;text-align:center;font-size:11px;letter-spacing:.2px;font-weight:700;padding:8px 10px}
+.top{padding:25px 20px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:1px;color:#fff0e2}
+h1{font-size:38px;line-height:1.1;margin:4px 0;color:#fff;font-weight:900;letter-spacing:-1.2px}
+.subtitle{font-size:14px;color:#fff2de;margin:0}
+.egg{font-size:30px;border-radius:18px;background:#ffe0bd;padding:16px;box-shadow:0 5px 14px #712e2138}
+.page{padding:0 16px 112px;min-height:calc(100dvh - 190px)}
+.hero,.panel,.welcome,.empty,.stats,.recipe{border-radius:18px;padding:19px;margin-bottom:14px}
+.hero,.panel,.welcome,.empty,.recipe{background:#FFE0BD}
+.hero{padding:24px 19px}
+.smallcap{font-size:11px;font-weight:800;letter-spacing:1.2px;color:#a54f1c}
+.hero h2{font-size:28px;line-height:1.13;margin:8px 0 9px;letter-spacing:-.7px}
+.desc,.hint{color:#805a40;font-size:14px;line-height:1.48;margin:0 0 16px}
+.input{width:100%;border-radius:12px;border:1px solid #e4baa0;background:white;color:#402718;padding:14px 13px;font-size:16px;outline-color:#B95B18}
+.input::placeholder{color:#9a7a63}
+.btn{display:inline-block;width:100%;background:#B95B18;color:white;text-align:center;border:0;border-radius:12px;padding:13px 14px;font-size:15px;font-weight:800;cursor:pointer;min-height:47px;text-decoration:none}
+.btn:focus-visible,.chip:focus-visible,.nav-item:focus-visible,.item-btn:focus-visible{outline:3px solid #123b60}
+.btn.light{background:white;color:#402718}
+.btn.small{font-size:13px;padding:9px 12px;min-height:38px}
+.btn.ghost{background:#f8efdf;color:#7a421e}
+.space{height:11px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{border:1px solid #e7b48b;background:#fff7ec;border-radius:999px;color:#56331e;font-weight:700;padding:9px 12px;font-size:13px}
+.chip.selected{color:#fff;background:#91420f;border-color:#91420f}
+.label{font-size:13px;font-weight:800;margin:17px 0 8px}
+.suggestions{background:#fff;border-radius:10px;margin:6px 0;overflow:hidden}
+.suggestion{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #f0e1d2;background:white;padding:10px 12px;color:#402718;font-size:14px}
+.stats{padding:16px 8px;display:flex;justify-content:space-around;background:#B95B18;color:white}
+.stat{flex:1;text-align:center}
+.stat:not(:last-child){border-right:1px solid #d78c58}
+.stat strong{display:block;font-size:24px}
+.stat span{font-size:12px;opacity:.92}
+.section-title{font-size:20px;font-weight:850;color:white;margin:20px 2px 12px}
+.panel h3,.welcome h3,.recipe h3{margin:0 0 8px;font-size:18px}
+.panel .desc{font-size:13px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.badge{font-size:11px;font-weight:750;color:#8e4c20;background:#fff8ef;border-radius:8px;padding:5px 8px;white-space:nowrap}
+.recipe{background:#FFF3E7}
+.recipe .icon{font-size:33px;background:#FFE0BD;display:grid;place-items:center;width:62px;height:62px;border-radius:15px;flex-shrink:0}
+.recipe .info{flex:1}
+.recipe h3{font-size:16px;margin:0 0 6px}
+.meta{color:#805a40;font-size:12px}
+.empty{text-align:center;color:#704329;line-height:1.5}
+.empty .large{font-size:36px;margin-bottom:8px}
+.details{background:#fff7ee;border-radius:12px;padding:13px;margin:12px 0}
+.details ol{padding-left:23px;font-size:14px;line-height:1.6}
+.details li{margin:5px 0}
+.missing{font-size:13px;line-height:1.5;color:#794a2d}
+.grid-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.product{background:white;border-radius:12px;padding:12px;margin:8px 0}
+.product strong{display:block;font-size:14px;margin-bottom:6px}
+.product .marketname{color:#966036;font-size:12px;font-weight:700;margin-bottom:8px}
+.market-row{background:#fff3e7;border-radius:11px;padding:11px;margin:8px 0}
+.market-row strong{font-size:14px}
+.market-row .actions{display:flex;gap:8px;margin-top:8px}
+.market-row .actions .btn{flex:1}
+.shopping-row{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff9f1;border-radius:11px;padding:12px;margin-bottom:8px}
+.shopping-row label{flex:1;font-size:14px}
+.shopping-row input{width:21px;height:21px;accent-color:#B95B18}
+.small-link{border:0;background:transparent;color:#7a3911;font-weight:700;padding:8px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,490px);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#B95B18;box-shadow:0 -9px 25px #7b361e30;border-radius:20px 20px 0 0;padding:11px 3px calc(10px + env(safe-area-inset-bottom,0px));z-index:5}
+.nav-item{border:0;background:transparent;color:#f3d6c0;font-size:10px;font-weight:700;text-align:center;padding:5px 0 2px;line-height:1.3}
+.nav-item .navicon{display:block;font-size:23px;margin:0 0 3px}
+.nav-item.active{color:white}
+.nav-item.active .navicon{transform:translateY(-2px)}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);max-width:min(92vw,420px);background:#402718;color:white;padding:12px 16px;border-radius:12px;font-size:14px;box-shadow:0 10px 22px #0002;z-index:10}
+.note{font-size:11px;color:#805a40;line-height:1.5;margin-top:10px}
+.footer{text-align:center;color:#ffe6d0;font-size:12px;margin:25px 0 0}
+@media(min-width:600px){body{padding:24px}#phone{min-height:900px;border-radius:30px;overflow:hidden}.nav{bottom:24px;border-radius:20px 20px 29px 29px}}
+@media(prefers-reduced-motion:no-preference){.btn,.chip,.nav-item{transition:transform .15s,background .15s}.btn:active,.chip:active{transform:scale(.98)}}
+</style>
+</head>
+<body>
+<div id="phone">
+<div class="demo-ribbon">📱 iPHONE WEB DEMOSU · GERÇEK UYGULAMA DEĞİLDİR</div>
+<header class="top"><div><div class="eyebrow">🎃 MUTFAĞINA HOŞ GELDİN</div><h1>Ne Pişir?</h1><p class="subtitle">Bugün sofranda ne olsun?</p></div><div class="egg" aria-hidden="true">🍳</div></header>
+<main class="page" id="content" aria-live="polite"></main>
+<nav class="nav" aria-label="Alt menü">
+<button class="nav-item active" data-tab="home"><span class="navicon">⌂</span>Anasayfa</button>
+<button class="nav-item" data-tab="recipes"><span class="navicon">▤</span>Tarifler</button>
+<button class="nav-item" data-tab="favorites"><span class="navicon">♡</span>Favoriler</button>
+<button class="nav-item" data-tab="profile"><span class="navicon">♙</span>Profilim</button>
+<button class="nav-item" data-tab="markets"><span class="navicon">▥</span>Marketler</button>
+</nav>
+</div>
+<script>
+(function(){
+'use strict';
+const markets=[['Migros','migros.com.tr'],['CarrefourSA','carrefoursa.com'],['A101','a101.com.tr'],['ŞOK','sokmarket.com.tr'],['BİM','bim.com.tr'],['FİLE Market','file.com.tr'],['Getir','getir.com'],['Yemeksepeti Market','yemeksepeti.com'],['Trendyol Go','trendyol.com']];
+const catalog=[
+['Migros','Migros Süt 1 L','https://www.migros.com.tr/migros-sut-1-l-p-a805ac'],
+['Migros','Migros Süt 200 Ml','https://www.migros.com.tr/migros-sut-200-ml-p-a80681'],
+['CarrefourSA','İçim Sade Süt 1 L','https://www.carrefoursa.com/icim-sade-sut-1-l-p-30096708'],
+['CarrefourSA','İçim Pastorize Süt 1 L','https://www.carrefoursa.com/icim-pastorize-sut-1-l-p-30256626'],
+['A101','İçim Yağlı Süt 1 L','https://www.a101.com.tr/kapida/sut-urunleri-kahvaltilik/icim-yagli-sut-1-l_p-12000233'],
+['A101','Sütaş Tam Yağlı Süt 1 L','https://www.a101.com.tr/kapida/sut-urunleri-kahvaltilik/sutas-tam-yagli-sut-1-l_p-12002747'],
+['A101','Sütaş Laktozsuz Süt 1 L','https://www.a101.com.tr/kapida/sut-urunleri-kahvaltilik/sutas-laktozsuz-sut-1-l_p-12002223'],
+['ŞOK','Mis Pastörize Doğal İçme Sütü 1 L','https://www.sokmarket.com.tr/mis-pastorize-dogal-icme-sutu-1-l-p-6044'],
+['ŞOK','Mis Uht Süt %3.1 Yağlı 1 L','https://www.sokmarket.com.tr/mis-uht-sut-3-1-yagli-1-l-p-8533'],
+['ŞOK','İçim Rahat Laktozsuz Süt 1 L','https://www.sokmarket.com.tr/icim-rahat-laktozsuz-sut-1-l-p-8430'],
+['ŞOK','Mis Dilimli Tost Peyniri 1200 g','https://www.sokmarket.com.tr/mis-dilimli-tost-peyniri-1200-g-p-447']
+];
+const recipes=[
+{id:1,name:'İmam Bayıldı',cat:'Sebze Yemeği',mins:65,icon:'🍆',serves:4,ing:['patlıcan','soğan','domates','sarımsak','zeytinyağı','tuz'],steps:['Patlıcanları alacalı soy ve tuzlu suda beklet.','Soğan ve sarımsağı zeytinyağıyla kavur.','Domatesli harcı patlıcanlara doldurup fırında pişir.']},
+{id:2,name:'Hünkar Beğendi',cat:'Ana Yemek',mins:70,icon:'🍲',serves:4,ing:['dana eti','patlıcan','soğan','domates','tereyağı','un','süt','kaşar peyniri','tuz'],steps:['Eti soğan ve domatesle yumuşayana kadar pişir.','Beğendi için tereyağı, un ve sütle sos hazırla.','Köz patlıcan ve kaşarı ekleyip etle servis et.']},
+{id:3,name:'İzmir Köfte',cat:'Ana Yemek',mins:60,icon:'🍖',serves:4,ing:['kıyma','patates','soğan','yumurta','galeta unu','domates','salça','tuz'],steps:['Köfte malzemelerini yoğur ve şekillendir.','Patateslerle birlikte fırın kabına yerleştir.','Salçalı sosu ekleyip iyice pişir.']},
+{id:4,name:'Yayla Çorbası',cat:'Çorba',mins:40,icon:'🥣',serves:4,ing:['yoğurt','pirinç','yumurta','un','tereyağı','nane','tuz'],steps:['Pirinci suda haşla.','Yoğurt, yumurta ve unu ılıştırarak çorbaya ekle.','Naneli tereyağıyla servis et.']},
+{id:5,name:'Kısır',cat:'Salata',mins:30,icon:'🥗',serves:6,ing:['ince bulgur','domates','salatalık','maydanoz','limon','salça','zeytinyağı'],steps:['Bulguru sıcak suyla ıslatıp şişir.','Salça ve baharatlarla karıştır.','Doğranmış yeşillikler ve limon ekle.']}
+];
+const ingredients=['domates','yumurta','süt','peynir','patates','soğan','patlıcan','sarımsak','yoğurt','pirinç','tereyağı','limon','un','tuz','kıyma','maydanoz','salatalık','ince bulgur','nane','kaşar peyniri','zeytinyağı','salça','dana eti','galeta unu'];
+const emojis={domates:'🍅',yumurta:'🥚',süt:'🥛',peynir:'🧀',patates:'🥔',soğan:'🧅',patlıcan:'🍆',sarımsak:'🧄',yoğurt:'🥣',pirinç:'🍚',tereyağı:'🧈',limon:'🍋',salatalık:'🥒'};
+const state={tab:'home',selected:[],q:'',marketQ:'',searched:'',favorites:[],shopping:[],results:null,detail:null,mins:0};
+const root=document.getElementById('content');
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+function norm(s){return String(s||'').toLocaleLowerCase('tr-TR').replace(/ı/g,'i').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();}
+function emoji(s){return emojis[s]||'🛒';}
+function toast(s){const old=document.querySelector('.toast');if(old)old.remove();const el=document.createElement('div');el.className='toast';el.setAttribute('role','status');el.textContent=s;document.body.appendChild(el);setTimeout(function(){el.remove()},2400);}
+function scrollTop(){window.scrollTo({top:0,behavior:'instant'});}
+function btn(text,action,cls){return '<button type="button" class="btn '+(cls||'')+'" data-action="'+action+'">'+text+'</button>';}
+function chips(arr,typ,sel){return '<div class="chips">'+arr.map(function(x){return '<button class="chip'+(sel&&sel.includes(x)?' selected':'')+'" data-action="'+typ+'" data-value="'+esc(x)+'">'+esc(x)+'</button>'}).join('')+'</div>';}
+function home(){
+const q=norm(state.q);
+const hints=q?ingredients.filter(function(i){return norm(i).includes(q)&&!state.selected.includes(i)}).slice(0,5):[];
+return '<div class="hero"><div class="smallcap">TAZE FİKİRLER, NEFİS TARİFLER</div><h2>Mutfağında neler var?</h2><p class="desc">Malzemelerini seç, sofrana yakışan lezzetleri keşfet.</p><input class="input" id="ingredient" autocomplete="off" placeholder="Domates, peynir, yumurta..." value="'+esc(state.q)+'" aria-label="Malzeme ara">'+(hints.length?'<div class="suggestions">'+hints.map(function(i){return '<button class="suggestion" data-action="add" data-value="'+esc(i)+'">＋ '+esc(i)+'</button>'}).join('')+'</div>':'')+'<p class="label">Hızlı seç</p>'+chips(['domates','yumurta','peynir','patates','süt','soğan'],'add',state.selected)+(state.selected.length?'<p class="label">Seçtiğin malzemeler</p>'+chips(state.selected,'remove'): '')+btn('🍳 Bana Tarif Bul →','find')+'</div><div class="stats"><div class="stat"><strong>1000+</strong><span>Tarif koleksiyonu*</span></div><div class="stat"><strong>'+state.favorites.length+'</strong><span>Demo favori</span></div><div class="stat"><strong>'+state.shopping.length+'</strong><span>Listemde</span></div></div><h2 class="section-title">Sofrana ilham olsun</h2><div class="welcome"><h3>🍽 Bugün yeni bir lezzet dene!</h3><p class="desc">Evindeki malzemelerle tarif bul, favorilerine kaydet ve eksiklerini alışveriş listene ekle.</p>'+btn('Tarifleri Keşfet →','recipes')+'</div><p class="footer">🎃 Ne Pişir? · Sevgiyle pişirildi</p><p class="note" style="color:#fff0e2">*Bu web demosunda koleksiyondan yalnızca 5 örnek tarif gösterilir.</p>';
+}
+function recipeCard(r){
+const missing=r.ing.filter(function(i){return !state.selected.includes(i)});
+return '<article class="recipe"><div class="row"><div class="icon">'+r.icon+'</div><div class="info"><h3>'+esc(r.name)+'</h3><div class="meta">'+esc(r.cat)+' · ⏱ '+r.mins+' dk · '+r.serves+' kişilik</div></div><button class="small-link" aria-label="Favorilere ekle" data-action="fav" data-value="'+r.id+'">'+(state.favorites.includes(r.id)?'♥':'♡')+'</button></div><p class="missing">Evinde olmayan: '+missing.length+' malzeme</p>'+btn('Tarifi Gör →','detail:'+r.id,'small')+'</article>';
+}
+function details(r){
+const missing=r.ing.filter(function(i){return !state.selected.includes(i)});
+return '<div class="panel"><button class="small-link" data-action="back">← Tariflere dön</button><h2>'+r.icon+' '+esc(r.name)+'</h2><p class="desc">'+esc(r.cat)+' · '+r.mins+' dk · '+r.serves+' kişilik</p><div class="details"><strong>Malzemeler</strong>'+chips(r.ing,'ingredientToggle',state.selected)+'</div><div class="details"><strong>Yapılışı (demo özeti)</strong><ol>'+r.steps.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol></div><p class="hint">'+missing.length+' eksik malzemen var.</p>'+btn('🛒 Eksikleri Alışveriş Listesine Ekle','missing:'+r.id)+ '<div class="space"></div>'+btn(state.favorites.includes(r.id)?'♥ Favorilerimden çıkar':'♡ Favorilerime ekle','fav:'+r.id,'light')+'</div>';
+}
+function recipePage(){
+if(state.detail){const r=recipes.find(function(x){return x.id===state.detail});if(r)return details(r)}
+const arr=(state.results||recipes).filter(function(r){return !state.mins||r.mins<=state.mins});
+return '<h2 class="section-title">🍽 Tarifler</h2><div class="panel"><h3>Tariflerini Filtrele</h3><p class="label">⏱ Hazırlama süresi</p><div class="chips">'+[['Tümü',0],['30 dk',30],['45 dk',45],['60 dk',60],['90 dk',90]].map(function(x){return '<button class="chip'+(x[1]===state.mins?' selected':'')+'" data-action="minutes" data-value="'+x[1]+'">'+x[0]+'</button>'}).join('')+'</div>'+btn('Malzemelerimi Değiştir','home','light')+'</div><div class="row"><h2 class="section-title">Tarif Sonuçları</h2><span class="badge">'+arr.length+' demo tarif</span></div>'+(arr.length?arr.map(recipeCard).join(''):'<div class="empty">Bu filtreye uygun örnek tarif bulunamadı.</div>')+'<p class="note" style="color:white">Bu deneme sürümünde beş örnek tarif vardır. Tam tarif arşivi iOS uygulamasıyla aynı değildir.</p>';
+}
+function favorites(){
+const f=recipes.filter(function(r){return state.favorites.includes(r.id)});
+return '<h2 class="section-title">❤️ Favorilerim</h2>'+(f.length?f.map(recipeCard).join(''):'<div class="empty"><div class="large">♡</div>Henüz favori tarifin yok. Bu demoda Tarifler sekmesinden kalp simgesine dokunabilirsin.<div class="space"></div>'+btn('Tariflere Git →','recipes')+'</div>')+'<p class="note" style="color:white">Favoriler yalnızca bu açık web demo oturumunda tutulur; gerçek hesabına kaydedilmez.</p>';
+}
+function profile(){
+return '<h2 class="section-title">♙ Profilim</h2><div class="panel"><h3>👋 Hoş geldin!</h3><p class="desc">Bu bir iPhone web arayüz demosudur. Gerçek hesap oluşturma ve oturum açma bu sürümde kapalıdır.</p>'+btn('Giriş Yap / Üye Ol','login','light')+'</div><div class="panel"><div class="row"><h3>🛒 Alışveriş Listem</h3><span class="badge">'+state.shopping.length+' ürün</span></div>'+(state.shopping.length?state.shopping.map(function(i){return '<div class="shopping-row"><input type="checkbox" aria-label="'+esc(i.name)+' alındı" data-action="check" data-value="'+esc(i.name)+'" '+(i.done?'checked':'')+'><label'+(i.done?' style="text-decoration:line-through;opacity:.6"':'')+'>'+emoji(i.name)+' '+esc(i.name)+'</label><button class="small-link" data-action="delete" data-value="'+esc(i.name)+'">Sil</button></div>'}).join('')+'<div class="space"></div>'+btn('Listedeki ürünleri markette ara →','shoppingMarket'):'<p class="desc">Listen boş. Tarif detaylarından eksik malzemeleri ekleyebilirsin.</p>')+'</div><div class="panel"><h3>🎃 Ne Pişir?</h3><p class="desc">Tarif bulma, favoriler, alışveriş listesi ve market arama ekranlarının deneme görünümü.</p></div>';
+}
+function productOptions(q){
+const words=norm(q).split(' ').filter(Boolean);
+return catalog.filter(function(x){return words.length>0&&words.every(function(w){return norm(x[1]).includes(w)})}).slice(0,6);
+}
+function marketSearch(q){const x=String(q||'').trim();if(!x){toast('Önce bir ürün seç.');return;}state.searched=x;render();}
+function marketsPage(){
+const items=state.searched?productOptions(state.searched):[];
+return '<h2 class="section-title">🛒 Marketlerde Ara</h2><div class="panel"><h3>🛒 Marketlerde Ürün Ara</h3><p class="desc">Ürünü seç, marketin resmî ürün sayfasını veya ürün aramasını aç. Bu demo fiyat karşılaştırması yapmaz.</p><input class="input" id="market-input" placeholder="Örn. domates, süt, yumurta" value="'+esc(state.marketQ)+'" aria-label="Markette ürün ara">'+btn('🔎 Marketlerde Ara','marketSearch')+'<p class="label">Hızlı arama</p>'+chips(['Domates','Patates','Yumurta','Süt','Pirinç','Peynir'],'quickMarket')+'<a class="btn light" href="https://marketfiyati.org.tr/" target="_blank" rel="noopener noreferrer">🌐 Resmî Market Fiyatı Sitesi ↗</a></div>'+(state.searched?'<div class="panel"><h3>🛒 '+esc(state.searched)+' için marketler</h3>'+(items.length?'<p class="desc">Doğrudan ürün bağlantısı olan örnekler. Marka ve miktarı kontrol et.</p>'+items.map(function(x){return '<div class="product"><strong>'+esc(x[1])+'</strong><div class="marketname">'+esc(x[0])+'</div><a class="btn small" target="_blank" rel="noopener noreferrer" href="'+esc(x[2])+'">Ürün sayfasını aç ↗</a></div>'}).join(''):'<p class="desc">Bu ürün için örnek katalogda doğrudan adres bulunamadı. Aşağıdan markette ara.</p>')+'<h3 style="margin-top:16px">Tüm marketlerde ara</h3>'+markets.map(function(x){const url='https://www.google.com/search?q='+encodeURIComponent('site:'+x[1]+' '+state.searched);return '<div class="market-row"><strong>🏪 '+esc(x[0])+'</strong><div class="actions"><a class="btn small" target="_blank" rel="noopener noreferrer" href="'+esc(url)+'">Ürünü ara 🔎</a><a class="btn small light" target="_blank" rel="noopener noreferrer" href="https://www.'+esc(x[1])+'/">Marketi aç ↗</a></div></div>'}).join('')+'<p class="note">Markette “Sepete Ekle” işlemini kullanıcı tamamlar. Uygulama veya Safari açılması marketin bağlantı desteğine bağlıdır.</p></div>':'')+'<div class="panel"><h3>🧾 Alışveriş listemden ara</h3>'+(state.shopping.length?chips(state.shopping.map(function(x){return x.name}),'quickMarket'):'<p class="desc">Tarif detaylarından demo alışveriş listesine ürün ekleyebilirsin.</p>')+'</div><div class="panel"><h3>ℹ️ Market bağlantıları</h3><p class="desc">Doğrudan ürün URL’leri sınırlı sayıdaki örneklerdir. Telefonuna bir market uygulaması yüklenmiş olsa bile linkin uygulamada açılacağı garanti edilemez.</p></div>';
+}
+function render(){
+document.querySelectorAll('[data-tab]').forEach(function(e){e.classList.toggle('active',e.dataset.tab===state.tab)});
+root.innerHTML=({home:home,recipes:recipePage,favorites:favorites,profile:profile,markets:marketsPage}[state.tab])();
+}
+function tab(t){state.tab=t;if(t==='recipes')state.detail=null;render();scrollTop();}
+document.querySelector('.nav').addEventListener('click',function(e){const b=e.target.closest('[data-tab]');if(b)tab(b.dataset.tab);});
+root.addEventListener('input',function(e){if(e.target.id==='ingredient'){state.q=e.target.value;const start=e.target.selectionStart;const input=document.activeElement;const hints=ingredients.filter(function(x){return norm(x).includes(norm(state.q))&&!state.selected.includes(x)}).slice(0,5);const area=document.querySelector('.hero .suggestions');if(area)area.remove();if(hints.length){const d=document.createElement('div');d.className='suggestions';d.innerHTML=hints.map(function(i){return '<button class="suggestion" data-action="add" data-value="'+esc(i)+'">＋ '+esc(i)+'</button>'}).join('');input.insertAdjacentElement('afterend',d);}if(start!==null)input.setSelectionRange(start,start);}
+if(e.target.id==='market-input')state.marketQ=e.target.value;
+});
+root.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='market-input'){e.preventDefault();marketSearch(state.marketQ)}if(e.key==='Enter'&&e.target.id==='ingredient'){e.preventDefault();const first=ingredients.find(function(i){return norm(i)===norm(state.q)});if(first){state.selected.includes(first)||state.selected.push(first);state.q='';render();}}});
+root.addEventListener('click',function(e){
+const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action;const v=b.dataset.value;
+if(a==='add'){if(!state.selected.includes(v))state.selected.push(v);state.q='';render();}
+else if(a==='remove'){state.selected=state.selected.filter(function(x){return x!==v});render();}
+else if(a==='ingredientToggle'){if(state.selected.includes(v)){state.selected=state.selected.filter(function(x){return x!==v})}else{state.selected.push(v)}render();}
+else if(a==='find'){if(!state.selected.length){toast('Önce en az bir malzeme seç.');return;}state.results=recipes.filter(function(r){return r.ing.some(function(i){return state.selected.includes(i)})}).sort(function(a,b){const score=function(r){return r.ing.filter(function(i){return state.selected.includes(i)}).length/r.ing.length};return score(b)-score(a)});tab('recipes');}
+else if(a==='recipes'||a==='home'){if(a==='recipes')state.results=null;tab(a);}
+else if(a==='minutes'){state.mins=Number(v);render();}
+else if(a.indexOf('detail:')===0){state.detail=Number(a.split(':')[1]);render();scrollTop();}
+else if(a==='back'){state.detail=null;render();}
+else if(a==='fav'||a.indexOf('fav:')===0){const id=Number(v||a.split(':')[1]);state.favorites=state.favorites.includes(id)?state.favorites.filter(function(x){return x!==id}):state.favorites.concat(id);render();toast('Demo favorilerin güncellendi.');}
+else if(a.indexOf('missing:')===0){const r=recipes.find(function(x){return x.id===Number(a.split(':')[1])});if(r){r.ing.filter(function(i){return !state.selected.includes(i)}).forEach(function(i){if(!state.shopping.some(function(x){return x.name===i}))state.shopping.push({name:i,done:false})});toast('Eksik malzemeler demo listene eklendi.');render();}}
+else if(a==='login'){toast('Bu web demosunda gerçek üyelik işlemleri kapalı.');}
+else if(a==='check'){const x=state.shopping.find(function(i){return i.name===v});if(x)x.done=!x.done;render();}
+else if(a==='delete'){state.shopping=state.shopping.filter(function(x){return x.name!==v});render();}
+else if(a==='shoppingMarket'){state.searched=state.shopping[0].name;state.marketQ=state.searched;tab('markets');}
+else if(a==='marketSearch'){marketSearch(state.marketQ||document.getElementById('market-input').value);}
+else if(a==='quickMarket'){state.searched=v;state.marketQ=v;tab('markets');}
+});
+render();
+})();
+</script>
+</body>
+</html>
