@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Ne Pişir? | iPhone Market Bağlantısı Testi</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#402718;background:#fff6ed}
+*{box-sizing:border-box}
+body{margin:0;padding:24px 14px 48px;max-width:580px;margin-inline:auto}
+h1{font-size:26px;line-height:1.2;margin:0 0 9px}
+h2{font-size:19px;margin:0 0 9px}
+p{line-height:1.45;margin:8px 0 14px}
+header{padding:20px 16px;background:#ffe0bd;border-radius:17px;margin-bottom:16px}
+.muted{color:#74543e;font-size:14px}
+.card{background:#fff;border:1px solid #edceb2;border-radius:14px;padding:16px;margin:12px 0}
+.market{display:block;color:#88501e;font-weight:800;margin-bottom:6px}
+.product{display:block;font-weight:650;margin-bottom:10px}
+.link{display:block;border-radius:10px;background:#a95011;color:white;text-align:center;text-decoration:none;padding:13px;font-size:16px;font-weight:750;min-height:48px}
+label{display:block;font-size:13px;font-weight:650;margin:14px 0 6px}
+select,textarea{width:100%;padding:11px;font-size:16px;border-radius:9px;border:1px solid #d2b79f;background:white;color:#402718}
+textarea{min-height:140px;resize:vertical}
+button{width:100%;font-size:16px;font-weight:700;padding:13px;border-radius:10px;border:0;background:#402718;color:white;min-height:48px}
+.note{background:#fff0e4;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.5}
+footer{margin-top:18px}
+</style>
+</head>
+<body>
+<header>
+<h1>🛒 Ne Pişir? iPhone testi</h1>
+<p>Market ürün bağlantılarının <strong>iPhone'da yüklü market uygulamasına</strong> mı, yoksa <strong>Safari'ye</strong> mi yönlendiğini kontrol et.</p>
+<p class="muted">Bu bağlantı testi, Ne Pişir? uygulamasının yüklü olmasını gerektirmez. Yalnızca marketlerin iPhone bağlantı davranışını ölçer; Ne Pişir? içinden geçiş ayrı test edilmelidir.</p>
+</header>
+<section class="card">
+<h2>Nasıl test edilir?</h2>
+<p>Bu sayfayı <strong>iPhone Safari</strong> üzerinden aç. Aşağıdaki marketlerden birine dokun. Ürün uygulamada mı yoksa Safari'de mi açıldı? Geri dönerek sonucu işaretle.</p>
+<p class="note">Market uygulaması iPhone'da yüklü değilse Safari açılması normaldir. Kurulu olsa bile uygulamanın ilgili Universal Link bağlantısını desteklemesi gerekir. Ürünü satın alma veya sepete ekleme zorunluluğu yok.</p>
+</section>
+<main>
+<section class="card"><span class="market">Migros</span><span class="product">Migros Süt 1 L</span><a class="link" href="https://www.migros.com.tr/migros-sut-1-l-p-a805ac">Ürün sayfasını aç ↗</a><label for="migros">iPhone'da ne açıldı?</label><select id="migros" data-market="Migros"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+<section class="card"><span class="market">CarrefourSA</span><span class="product">İçim Sade Süt 1 L</span><a class="link" href="https://www.carrefoursa.com/icim-sade-sut-1-l-p-30096708">Ürün sayfasını aç ↗</a><label for="carrefour">iPhone'da ne açıldı?</label><select id="carrefour" data-market="CarrefourSA"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+<section class="card"><span class="market">A101 Kapıda</span><span class="product">İçim Yağlı Süt 1 L</span><a class="link" href="https://www.a101.com.tr/kapida/sut-urunleri-kahvaltilik/icim-yagli-sut-1-l_p-12000233">Ürün sayfasını aç ↗</a><label for="a101">iPhone'da ne açıldı?</label><select id="a101" data-market="A101"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+<section class="card"><span class="market">ŞOK</span><span class="product">Mis Pastörize Doğal İçme Sütü 1 L</span><a class="link" href="https://www.sokmarket.com.tr/mis-pastorize-dogal-icme-sutu-1-l-p-6044">Ürün sayfasını aç ↗</a><label for="sok">iPhone'da ne açıldı?</label><select id="sok" data-market="ŞOK"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+</main>
+<section class="card">
+<h2>Sonuçları paylaş</h2>
+<p>Seçimleri yaptıktan sonra sonucu kopyala ve ChatGPT görüşmesine yapıştır. Bu sayfa herhangi bir test sonucunu sunucuya göndermez.</p>
+<button id="copy">Test sonuçlarını kopyala</button>
+<label for="result">Kopyalanacak metin</label>
+<textarea id="result" readonly>Henüz test sonucu seçilmedi.</textarea>
+<p class="muted" id="status" aria-live="polite"></p>
+</section>
+<footer class="muted">Ne Pişir? · Market bağlantı testi · 24 Kasım 2026. Herhangi bir sipariş veya ödeme yapılmaz.</footer>
+<script>
+function summary(){
+  var lines=['Ne Pişir? iPhone / Safari market bağlantısı testi'];
+  document.querySelectorAll('select[data-market]').forEach(function(s){lines.push(s.dataset.market+': '+s.value)});
+  lines.push('Not: Bunlar market HTTPS bağlantısı testleridir, Ne Pişir? içindeki native yönlendirme ayrı test edilmelidir.');
+  return lines.join('\n');
+}
+function refresh(){document.getElementById('result').value=summary();}
+document.querySelectorAll('select[data-market]').forEach(function(s){s.addEventListener('change',refresh)});
+document.getElementById('copy').addEventListener('click',async function(){
+  var value=summary();refresh();
+  try{await navigator.clipboard.writeText(value); document.getElementById('status').textContent='Kopyalandı. ChatGPT sohbetine yapıştırabilirsin.';}
+  catch(e){var area=document.getElementById('result');area.focus();area.select();document.getElementById('status').textContent='Metin seçildi; Kopyala komutuyla ChatGPT sohbetine yapıştır.';}
+});
+refresh();
+</script>
+</body>
+</html>
