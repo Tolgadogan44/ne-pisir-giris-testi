@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Ne Pişir? — iPhone Uygulama Testi (Expo Go)</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#402718;background:#fff7ee}
+*{box-sizing:border-box}
+body{max-width:630px;margin:auto;padding:28px 16px 55px}
+h1{font-size:26px;margin:0 0 9px}
+h2{font-size:20px;margin:12px 0}
+p,li{line-height:1.55}
+p{margin:9px 0 15px}
+.card{background:#fff;border:1px solid #edd1b4;border-radius:15px;padding:17px;margin:16px 0}
+.subtle{color:#775a41;font-size:14px}
+.note{background:#fff0df;border-radius:10px;padding:12px 14px}
+.button{display:block;width:100%;border-radius:10px;background:#a65318;color:#fff;text-align:center;text-decoration:none;padding:15px 12px;margin:12px 0;font-weight:800;min-height:51px}
+.button.secondary{background:#402718}
+ol{padding-left:21px}
+li{margin:9px 0}
+kbd{font-family:inherit;background:#fff3e4;border:1px solid #e1bd9c;border-radius:5px;padding:1px 5px}
+small{color:#775a41}
+</style>
+</head>
+<body>
+<h1>📱 Ne Pişir? iPhone testi</h1>
+<p>iPhone'da gerçek React Native <strong>Aç</strong> ve <strong>Paylaş</strong> düğmelerini dene. Ücretli Apple geliştirici üyeliğine veya App Store test dağıtımına ihtiyaç yok.</p>
+<div class="note"><strong>Önemli:</strong> Bu, tam Ne Pişir? uygulaması değil; yalnızca market ürün bağlantılarının iPhone'daki yerel davranışını ölçen <strong>ayrı bir Expo Go test ekranıdır.</strong> Hiçbir market uygulaması yüklü değilse Safari'nin açılması normaldir.</div>
+<section class="card">
+<h2>1. Expo Go'yu hazırla</h2>
+<p>iPhone'unda <strong>Expo Go</strong> uygulaması yoksa indir. Bu test, Expo SDK 54 için hazırlandı.</p>
+<a class="button secondary" href="https://expo.dev/go?device=true&amp;platform=ios&amp;sdkVersion=54">Expo Go kurulum sayfasını aç</a>
+</section>
+<section class="card">
+<h2>2. Yerel test ekranını aç</h2>
+<p>Expo Snack sayfasında <strong>My Device / Run on device</strong> seçeneğini kullan ve Expo Go'da çalıştır. QR kodu görünürse bu sayfayı başka bir ekranda açıp iPhone kamerasıyla QR'ı okutabilirsin.</p>
+<a class="button" href="https://snack.expo.dev/?sourceUrl=https%3A%2F%2Ftolgadogan44.github.io%2Fne-pisir-giris-testi%2Fmarket-iphone-native-snack.js&sdkVersion=54.0.0&platform=mydevice&preview=true&name=Ne%20Pi%C5%9Fir%3F%20-%20iPhone%20Market%20Testi">Expo Snack iPhone testini aç ↗</a>
+<small>Bağlantı çevrimiçi Expo Snack ortamına gider. Hesap girişi veya QR adımları Expo sürümüne göre değişebilir.</small>
+</section>
+<section class="card">
+<h2>3. Sonuçları gönder</h2>
+<ol>
+<li><strong>Migros</strong> satırında <kbd>Aç</kbd> düğmesine bas. Safari açılırsa Expo Go'ya geri dön ve <kbd>Safari açıldı</kbd> seçeneğini işaretle.</li>
+<li><kbd>Paylaş</kbd> düğmesine bas. iPhone paylaşım menüsü açılıyor mu kontrol et.</li>
+<li>İstersen diğer üç market için de aynı işlemi tekrarla.</li>
+<li><kbd>Test sonuçlarını paylaş</kbd> düğmesiyle sonucu ChatGPT'ye gönder veya ekran görüntüsü paylaş.</li>
+</ol>
+<p class="subtle">Bağlantılar Migros, CarrefourSA, A101 ve ŞOK'un doğrulanmış resmî HTTPS ürün sayfalarıdır. Sepete ürün eklenmez, fiyat/stok sorgulanmaz, sipariş veya ödeme işlemi yapılmaz.</p>
+</section>
+<footer><p class="subtle">Kaynak: <a href="https://github.com/Tolgadogan44/ne-pisir-giris-testi/blob/main/market-iphone-native-snack.js">Expo Go test kodu (GitHub)</a>. İlgili ana uygulama GitHub deposunda ayrı tutulur.</p></footer>
+</body>
+</html>
