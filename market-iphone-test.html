@@ -22,6 +22,9 @@ label{display:block;font-size:13px;font-weight:650;margin:14px 0 6px}
 select,textarea{width:100%;padding:11px;font-size:16px;border-radius:9px;border:1px solid #d2b79f;background:white;color:#402718}
 textarea{min-height:140px;resize:vertical}
 button{width:100%;font-size:16px;font-weight:700;padding:13px;border-radius:10px;border:0;background:#402718;color:white;min-height:48px}
+button.copy-link{margin-top:12px;background:#ffe0bd;color:#402718;border:1px solid #bd8b65;font-size:14px}
+ol{padding-left:23px;line-height:1.6;font-size:14px}
+li{margin:4px 0}
 .note{background:#fff0e4;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.5}
 footer{margin-top:18px}
 </style>
@@ -33,15 +36,28 @@ footer{margin-top:18px}
 <p class="muted">Bu bağlantı testi, Ne Pişir? uygulamasının yüklü olmasını gerektirmez. Yalnızca marketlerin iPhone bağlantı davranışını ölçer; Ne Pişir? içinden geçiş ayrı test edilmelidir.</p>
 </header>
 <section class="card">
+<h2>🔎 İkinci aşama: Notlar'dan aç</h2>
+<p>Safari yerine <strong>Notlar</strong> uygulamasından açmayı deneyelim. Apple, Universal Link testinde bu yöntemi öneriyor.</p>
+<ol>
+<li>Aşağıdaki marketlerden birinin <strong>Ürün bağlantısını kopyala</strong> düğmesine dokun.</li>
+<li>iPhone'da <strong>Notlar</strong> uygulamasına geç, yeni bir nota bağlantıyı yapıştır.</li>
+<li>Yazı düzenlemeden çık; bağlantının üzerine <strong>uzun bas</strong>.</li>
+<li><strong>“[Market] uygulamasında aç”</strong> seçeneği var mı kontrol et. Varsa seçip ürünün açılıp açılmadığını gör.</li>
+<li>Buraya dön; uygulamanın yüklü olup olmadığını ve Notlar test sonucunu işaretle.</li>
+</ol>
+<p class="note">Ürün linkinin Safari'de açılması tek başına marketin uygulama desteği olmadığı anlamına gelmez. Market uygulaması yüklü değilse veya iOS bu bağlantıyı o uygulamayla eşleştirmemişse Safari açılması beklenebilir. Satın alma yapma.</p>
+</section>
+
+<section class="card">
 <h2>Nasıl test edilir?</h2>
 <p>Bu sayfayı <strong>iPhone Safari</strong> üzerinden aç. Aşağıdaki marketlerden birine dokun. Ürün uygulamada mı yoksa Safari'de mi açıldı? Geri dönerek sonucu işaretle.</p>
 <p class="note">Market uygulaması iPhone'da yüklü değilse Safari açılması normaldir. Kurulu olsa bile uygulamanın ilgili Universal Link bağlantısını desteklemesi gerekir. Ürünü satın alma veya sepete ekleme zorunluluğu yok.</p>
 </section>
 <main>
-<section class="card"><span class="market">Migros</span><span class="product">Migros Süt 1 L</span><a class="link" href="https://www.migros.com.tr/migros-sut-1-l-p-a805ac">Ürün sayfasını aç ↗</a><label for="migros">iPhone'da ne açıldı?</label><select id="migros" data-market="Migros"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
-<section class="card"><span class="market">CarrefourSA</span><span class="product">İçim Sade Süt 1 L</span><a class="link" href="https://www.carrefoursa.com/icim-sade-sut-1-l-p-30096708">Ürün sayfasını aç ↗</a><label for="carrefour">iPhone'da ne açıldı?</label><select id="carrefour" data-market="CarrefourSA"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
-<section class="card"><span class="market">A101 Kapıda</span><span class="product">İçim Yağlı Süt 1 L</span><a class="link" href="https://www.a101.com.tr/kapida/sut-urunleri-kahvaltilik/icim-yagli-sut-1-l_p-12000233">Ürün sayfasını aç ↗</a><label for="a101">iPhone'da ne açıldı?</label><select id="a101" data-market="A101"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
-<section class="card"><span class="market">ŞOK</span><span class="product">Mis Pastörize Doğal İçme Sütü 1 L</span><a class="link" href="https://www.sokmarket.com.tr/mis-pastorize-dogal-icme-sutu-1-l-p-6044">Ürün sayfasını aç ↗</a><label for="sok">iPhone'da ne açıldı?</label><select id="sok" data-market="ŞOK"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+<section class="card"><span class="market">Migros</span><span class="product">Migros Süt 1 L</span><a class="link" href="https://www.migros.com.tr/migros-sut-1-l-p-a805ac">Ürün sayfasını aç ↗</a><label for="migros">iPhone'da ne açıldı?</label><select id="migros" data-market="Migros"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select><label for="migros-kurulu">Market uygulaması iPhone'da kurulu mu?</label><select id="migros-kurulu" data-installed="migros"><option value="Bilinmiyor">Emin değilim</option><option value="Yüklü">Evet, yüklü</option><option value="Yüklü değil">Hayır, yüklü değil</option></select><button type="button" class="copy-link" data-url="https://www.migros.com.tr/migros-sut-1-l-p-a805ac">Ürün bağlantısını Notlar için kopyala</button><label for="migros-notlar">Notlar'da uzun basma testinin sonucu</label><select id="migros-notlar" data-notes-result="migros"><option value="Denenmedi">Henüz denemedim</option><option value="Uygulamada Aç seçeneği var ve açıldı">“Uygulamada Aç” çıktı ve ürün açıldı</option><option value="Uygulamada Aç var ama çalışmadı">“Uygulamada Aç” çıktı ama çalışmadı</option><option value="Yalnızca Safari seçeneği var">Yalnızca Safari seçeneği vardı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+<section class="card"><span class="market">CarrefourSA</span><span class="product">İçim Sade Süt 1 L</span><a class="link" href="https://www.carrefoursa.com/icim-sade-sut-1-l-p-30096708">Ürün sayfasını aç ↗</a><label for="carrefour">iPhone'da ne açıldı?</label><select id="carrefour" data-market="CarrefourSA"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select><label for="carrefour-kurulu">Market uygulaması iPhone'da kurulu mu?</label><select id="carrefour-kurulu" data-installed="carrefour"><option value="Bilinmiyor">Emin değilim</option><option value="Yüklü">Evet, yüklü</option><option value="Yüklü değil">Hayır, yüklü değil</option></select><button type="button" class="copy-link" data-url="https://www.carrefoursa.com/icim-sade-sut-1-l-p-30096708">Ürün bağlantısını Notlar için kopyala</button><label for="carrefour-notlar">Notlar'da uzun basma testinin sonucu</label><select id="carrefour-notlar" data-notes-result="carrefour"><option value="Denenmedi">Henüz denemedim</option><option value="Uygulamada Aç seçeneği var ve açıldı">“Uygulamada Aç” çıktı ve ürün açıldı</option><option value="Uygulamada Aç var ama çalışmadı">“Uygulamada Aç” çıktı ama çalışmadı</option><option value="Yalnızca Safari seçeneği var">Yalnızca Safari seçeneği vardı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+<section class="card"><span class="market">A101 Kapıda</span><span class="product">İçim Yağlı Süt 1 L</span><a class="link" href="https://www.a101.com.tr/kapida/sut-urunleri-kahvaltilik/icim-yagli-sut-1-l_p-12000233">Ürün sayfasını aç ↗</a><label for="a101">iPhone'da ne açıldı?</label><select id="a101" data-market="A101"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select><label for="a101-kurulu">Market uygulaması iPhone'da kurulu mu?</label><select id="a101-kurulu" data-installed="a101"><option value="Bilinmiyor">Emin değilim</option><option value="Yüklü">Evet, yüklü</option><option value="Yüklü değil">Hayır, yüklü değil</option></select><button type="button" class="copy-link" data-url="https://www.a101.com.tr/kapida/sut-urunleri-kahvaltilik/icim-yagli-sut-1-l_p-12000233">Ürün bağlantısını Notlar için kopyala</button><label for="a101-notlar">Notlar'da uzun basma testinin sonucu</label><select id="a101-notlar" data-notes-result="a101"><option value="Denenmedi">Henüz denemedim</option><option value="Uygulamada Aç seçeneği var ve açıldı">“Uygulamada Aç” çıktı ve ürün açıldı</option><option value="Uygulamada Aç var ama çalışmadı">“Uygulamada Aç” çıktı ama çalışmadı</option><option value="Yalnızca Safari seçeneği var">Yalnızca Safari seçeneği vardı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
+<section class="card"><span class="market">ŞOK</span><span class="product">Mis Pastörize Doğal İçme Sütü 1 L</span><a class="link" href="https://www.sokmarket.com.tr/mis-pastorize-dogal-icme-sutu-1-l-p-6044">Ürün sayfasını aç ↗</a><label for="sok">iPhone'da ne açıldı?</label><select id="sok" data-market="ŞOK"><option value="Denenmedi">Henüz denemedim</option><option value="Market uygulaması">Market uygulaması</option><option value="Safari / web">Safari / web sayfası</option><option value="Ürün bulunamadı">Yanlış ürün / ürün bulunamadı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select><label for="sok-kurulu">Market uygulaması iPhone'da kurulu mu?</label><select id="sok-kurulu" data-installed="sok"><option value="Bilinmiyor">Emin değilim</option><option value="Yüklü">Evet, yüklü</option><option value="Yüklü değil">Hayır, yüklü değil</option></select><button type="button" class="copy-link" data-url="https://www.sokmarket.com.tr/mis-pastorize-dogal-icme-sutu-1-l-p-6044">Ürün bağlantısını Notlar için kopyala</button><label for="sok-notlar">Notlar'da uzun basma testinin sonucu</label><select id="sok-notlar" data-notes-result="sok"><option value="Denenmedi">Henüz denemedim</option><option value="Uygulamada Aç seçeneği var ve açıldı">“Uygulamada Aç” çıktı ve ürün açıldı</option><option value="Uygulamada Aç var ama çalışmadı">“Uygulamada Aç” çıktı ama çalışmadı</option><option value="Yalnızca Safari seçeneği var">Yalnızca Safari seçeneği vardı</option><option value="Bağlantı açılmadı">Bağlantı açılmadı</option></select></section>
 </main>
 <section class="card">
 <h2>Sonuçları paylaş</h2>
@@ -51,16 +67,35 @@ footer{margin-top:18px}
 <textarea id="result" readonly>Henüz test sonucu seçilmedi.</textarea>
 <p class="muted" id="status" aria-live="polite"></p>
 </section>
-<footer class="muted">Ne Pişir? · Market bağlantı testi · 24 Kasım 2026. Herhangi bir sipariş veya ödeme yapılmaz.</footer>
+<footer class="muted">Ne Pişir? · Market bağlantı testi · 25 Kasım 2026. Herhangi bir sipariş veya ödeme yapılmaz.</footer>
 <script>
 function summary(){
   var lines=['Ne Pişir? iPhone / Safari market bağlantısı testi'];
-  document.querySelectorAll('select[data-market]').forEach(function(s){lines.push(s.dataset.market+': '+s.value)});
+  document.querySelectorAll('select[data-market]').forEach(function(s){
+    var id=s.id;
+    var installed=document.getElementById(id+'-kurulu');
+    var notes=document.getElementById(id+'-notlar');
+    lines.push(s.dataset.market+': Safari testi = '+s.value+', Uygulama = '+(installed?installed.value:'Bilinmiyor')+', Notlar testi = '+(notes?notes.value:'Denenmedi'));
+  });
   lines.push('Not: Bunlar market HTTPS bağlantısı testleridir, Ne Pişir? içindeki native yönlendirme ayrı test edilmelidir.');
   return lines.join('\n');
 }
 function refresh(){document.getElementById('result').value=summary();}
-document.querySelectorAll('select[data-market]').forEach(function(s){s.addEventListener('change',refresh)});
+document.querySelectorAll('select').forEach(function(s){s.addEventListener('change',refresh)});
+document.querySelectorAll('button.copy-link').forEach(function(btn){
+  btn.addEventListener('click', async function(){
+    var value=btn.dataset.url;
+    try{
+      await navigator.clipboard.writeText(value);
+      document.getElementById('status').textContent='Ürün URL kopyalandı. Notlar uygulamasına yapıştırıp uzun bas.';
+    }catch(e){
+      var tmp=document.createElement('textarea');
+      tmp.value=value;document.body.appendChild(tmp);tmp.focus();tmp.select();
+      var ok=document.execCommand('copy');tmp.remove();
+      document.getElementById('status').textContent=ok?'Ürün URL kopyalandı. Notlar uygulamasına yapıştır.':'Kopyalama engellendi: bağlantının üzerine uzun basıp kopyalayabilirsin.';
+    }
+  });
+});
 document.getElementById('copy').addEventListener('click',async function(){
   var value=summary();refresh();
   try{await navigator.clipboard.writeText(value); document.getElementById('status').textContent='Kopyalandı. ChatGPT sohbetine yapıştırabilirsin.';}
