@@ -1,0 +1,19 @@
+name: iPhone native market Snack syntax
+
+on:
+  push:
+    paths:
+      - 'market-iphone-native-snack.js'
+      - '.github/workflows/native-market-check.yml'
+  workflow_dispatch:
+
+jobs:
+  jsx-check:
+    name: Validate React Native JSX
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Expo Snack source syntax
+        run: npx --yes esbuild@0.25.12 market-iphone-native-snack.js --loader:.js=jsx --outfile=/tmp/ne-pisir-iphone-snack.js
